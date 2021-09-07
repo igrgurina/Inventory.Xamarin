@@ -14,9 +14,9 @@ namespace Inventory.Services
             if (Machines?.Count() == 0)
             {
                 this.Machines.AddRange(
-                    new Machine() { MachineName = "PC123", MachineType = MachineType.PC, MachineCPU = "Ryzen", MachineGPU = "GeForce", MachineHDD = "Samsung", MachineRAM = "Corsair", MachineId = 1 },
-                    new Machine() { MachineName = "Server123", MachineType = MachineType.Server, MachineCPU = "Threadripper", MachineGPU = "Quadro", MachineHDD = "Seagate", MachineRAM = "Kingston", MachineId = 2 },
-                    new Machine() { MachineName = "Laptop123", MachineType = MachineType.Laptop, MachineCPU = "Ryzen", MachineGPU = "Quadro", MachineHDD = "Seagate", MachineRAM = "Kingston", MachineId = 3 }
+                    new Machine() { MachineName = "Fractal Design", MachineType = MachineType.PC, MachineCPU = "Ryzen", MachineGPU = "Radeon", MachineHDD = "Samsung", MachineRAM = "Corsair", MachineId = 1 },
+                    new Machine() { MachineName = "Corsair", MachineType = MachineType.Server, MachineCPU = "Threadripper", MachineGPU = "Quadro", MachineHDD = "Seagate", MachineRAM = "Kingston", MachineId = 2 },
+                    new Machine() { MachineName = "Lenovo ThinkPad", MachineType = MachineType.Laptop, MachineCPU = "Ryzen", MachineGPU = "GeForce", MachineHDD = "Toshiba", MachineRAM = "Crucial", MachineId = 3 }
                 );
             }
         }

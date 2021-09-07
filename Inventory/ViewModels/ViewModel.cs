@@ -112,7 +112,8 @@ namespace Inventory.ViewModels
 
                 dbContext.SaveChanges();
 
-                MachinesInfo = dbContext.Machines.ToObservableCollection();
+                //MachinesInfo = dbContext.Machines.ToObservableCollection();
+                MachinesInfo.Clear();
             }
         }
 
