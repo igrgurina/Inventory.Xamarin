@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
+using Inventory.Enumerations;
 using Inventory.Models;
 using Inventory.Services;
 using Syncfusion.DataSource.Extensions;
@@ -74,6 +75,7 @@ namespace Inventory.ViewModels
         #region SfPopupLayout
         private void OpenPopup()
         {
+            Machine = new Machine(); // clear
             DisplayPopup = true;
         }
         #endregion
@@ -91,7 +93,6 @@ namespace Inventory.ViewModels
                 MachineType = MachineType.PC
             };
 
-            Machine = new Machine();
 
             this.MachinesInfo.Add(_machine);
 

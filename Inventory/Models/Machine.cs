@@ -3,18 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Inventory.Enumerations;
 
 namespace Inventory.Models
 {
-    public enum MachineType
-    {
-        Server,
-        PC,
-        Laptop,
-        Mac
-    }
-
-   public class Machine : INotifyPropertyChanged
+    public class Machine : INotifyPropertyChanged
     {
 
         #region Fields

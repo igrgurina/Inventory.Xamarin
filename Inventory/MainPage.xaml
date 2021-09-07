@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Inventory"
+             xmlns:controls="clr-namespace:Inventory.Controls;assembly=Inventory"
+             xmlns:enums="clr-namespace:Inventory.Enumerations;assembly=Inventory"
              xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
 			xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
 			xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
@@ -30,66 +32,73 @@
 
                 <sfPopup:PopupView.ContentTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                            </Grid.RowDefinitions>
-                            <!--<Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>-->
+                        <ScrollView HorizontalOptions="FillAndExpand" Padding="15">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="75" />
+                                    <RowDefinition Height="75" />
+                                    <RowDefinition Height="75" />
+                                    <RowDefinition Height="75" />
+                                    <RowDefinition Height="75" />
+                                    <RowDefinition Height="75" />
+                                </Grid.RowDefinitions>
+                                <!--<Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>-->
 
-                            <inputLayout:SfTextInputLayout Hint="Name" 
-                                                           HelperText="Enter machine name" 
-                                                           ContainerType="Outlined"
-                                                           Grid.Row="0"
-                                                           Padding="15">
-                                <Entry Text="{Binding Machine.MachineName}"></Entry>
-                            </inputLayout:SfTextInputLayout>
+                                <inputLayout:SfTextInputLayout Hint="Name" 
+                                                               HelperText="Enter machine name" 
+                                                               ContainerType="Outlined"
+                                                               Grid.Row="0"
+                                                               Padding="15">
+                                    <Entry Text="{Binding Machine.MachineName}"></Entry>
+                                </inputLayout:SfTextInputLayout>
+                                    
+                                <inputLayout:SfTextInputLayout Hint="Type" HelperText="Select machine type" ContainerType="Outlined" Grid.Row="1" Padding="15">
+                                    <!--<combobox:SfComboBox MultiSelectMode="None" 
+                                                         DataSource="{Binding MachineTypeValues}" 
+                                                         SelectedItem="{Binding Machine.MachineType,Mode=TwoWay}" />-->
+                                    <controls:EnumBindablePicker x:TypeArguments="enums:MachineType" SelectedItem="{Binding Machine.MachineType}"></controls:EnumBindablePicker>
+                                    <!--<Label Text="{Binding Machine.MachineType}"></Label>-->
 
-                            <inputLayout:SfTextInputLayout Hint="Type" ContainerType="Outlined" Grid.Row="1" Padding="15">
-                                <combobox:SfComboBox IsEditableMode="False" DataSource="{Binding Machine.MachineType}" />
-                            </inputLayout:SfTextInputLayout>
+                                </inputLayout:SfTextInputLayout>
 
-                            <inputLayout:SfTextInputLayout Hint="CPU" 
-                                                           HelperText="Enter CPU component name" 
-                                                           ContainerType="Outlined"
-                                                           Grid.Row="2"
-                                                           Padding="15">
-                                <Entry Text="{Binding Machine.MachineCPU}"></Entry>
-                            </inputLayout:SfTextInputLayout>
-                            <inputLayout:SfTextInputLayout Hint="GPU" 
-                                                           HelperText="Enter GPU component name" 
-                                                           ContainerType="Outlined"
-                                                           Grid.Row="3"
-                                                           Padding="15">
-                                <Entry Text="{Binding Machine.MachineGPU}"></Entry>
-                            </inputLayout:SfTextInputLayout>
-                            <inputLayout:SfTextInputLayout Hint="RAM" 
-                                                           HelperText="Enter RAM component name" 
-                                                           ContainerType="Outlined"
-                                                           Grid.Row="4"
-                                                           Padding="15">
-                                <Entry Text="{Binding Machine.MachineRAM}"></Entry>
-                            </inputLayout:SfTextInputLayout>
-                            <inputLayout:SfTextInputLayout Hint="HDD" 
-                                                           HelperText="Enter HDD component name" 
-                                                           ContainerType="Outlined"
-                                                           Grid.Row="5"
-                                                           Padding="15">
-                                <Entry Text="{Binding Machine.MachineHDD}"></Entry>
-                            </inputLayout:SfTextInputLayout>
+                                <inputLayout:SfTextInputLayout Hint="CPU" 
+                                                               HelperText="Enter CPU component name" 
+                                                               ContainerType="Outlined"
+                                                               Grid.Row="2"
+                                                               Padding="15">
+                                    <Entry Text="{Binding Machine.MachineCPU}"></Entry>
+                                </inputLayout:SfTextInputLayout>
+                                <inputLayout:SfTextInputLayout Hint="GPU" 
+                                                               HelperText="Enter GPU component name" 
+                                                               ContainerType="Outlined"
+                                                               Grid.Row="3"
+                                                               Padding="15">
+                                    <Entry Text="{Binding Machine.MachineGPU}"></Entry>
+                                </inputLayout:SfTextInputLayout>
+                                <inputLayout:SfTextInputLayout Hint="RAM" 
+                                                               HelperText="Enter RAM component name" 
+                                                               ContainerType="Outlined"
+                                                               Grid.Row="4"
+                                                               Padding="15">
+                                    <Entry Text="{Binding Machine.MachineRAM}"></Entry>
+                                </inputLayout:SfTextInputLayout>
+                                <inputLayout:SfTextInputLayout Hint="HDD" 
+                                                               HelperText="Enter HDD component name" 
+                                                               ContainerType="Outlined"
+                                                               Grid.Row="5"
+                                                               Padding="15">
+                                    <Entry Text="{Binding Machine.MachineHDD}"></Entry>
+                                </inputLayout:SfTextInputLayout>
 
-                            <!--<Label Text="Machine Name:" Grid.Row="0" Grid.Column="0" />-->
-                            <!--<Entry Text="{Binding MachineName}" Grid.Row="0" Grid.Column="1" />-->
-                            <!--<Label Text="Machine CPU:" Grid.Row="1" Grid.Column="0" />-->
-                            <!--<Entry Text="{Binding MachineCpu}" Grid.Row="1" Grid.Column="1" />-->
-                        </Grid>
+                                <!--<Label Text="Machine Name:" Grid.Row="0" Grid.Column="0" />-->
+                                <!--<Entry Text="{Binding MachineName}" Grid.Row="0" Grid.Column="1" />-->
+                                <!--<Label Text="Machine CPU:" Grid.Row="1" Grid.Column="0" />-->
+                                <!--<Entry Text="{Binding MachineCpu}" Grid.Row="1" Grid.Column="1" />-->
+                            </Grid>
+                        </ScrollView>
                     </DataTemplate>
                 </sfPopup:PopupView.ContentTemplate>
             </sfPopup:PopupView>

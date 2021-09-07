@@ -9,7 +9,7 @@ using Xamarin.Essentials;
 
 namespace Inventory.Services
 {
-    public class InventoryContext : DbContext
+    public sealed partial class InventoryContext : DbContext
     {
         public DbSet<Machine> Machines { get; set; }
 
@@ -19,15 +19,10 @@ namespace Inventory.Services
 
             this.Database.EnsureCreated();
 
-            if (Machines?.Count() == 0)
-            {
-                this.Machines.AddRange(
-                    new Machine() { MachineName = "PC123", MachineType = MachineType.PC, MachineCPU = "Ryzen", MachineGPU = "GeForce", MachineHDD = "Samsung", MachineRAM = "Corsair", MachineId = 1 },
-                    new Machine() { MachineName = "Server123", MachineType = MachineType.Server, MachineCPU = "Threadripper", MachineGPU = "Quadro", MachineHDD = "Seagate", MachineRAM = "Kingston", MachineId = 2 },
-                    new Machine() { MachineName = "Laptop123", MachineType = MachineType.Laptop, MachineCPU = "Ryzen", MachineGPU = "Quadro", MachineHDD = "Seagate", MachineRAM = "Kingston", MachineId = 3 }
-                );
-            }
+            Seed();
         }
+
+        partial void Seed();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
