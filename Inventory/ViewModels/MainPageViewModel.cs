@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Inventory.Enumerations;
 using Inventory.Models;
 using Inventory.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using Syncfusion.DataSource.Extensions;
 using Xamarin.Forms;
@@ -35,11 +36,12 @@ namespace Inventory.ViewModels
         public ObservableCollection<Machine> MachinesInfo { get; set; }
 
         public ICommand AddMachineCommand { get; set; }
+        public ICommand RemoveAllMachinesCommand { get; set; }
+
+        public DelegateCommand NavigateToSpeakPageCommand { get; }
 
         #region SfPopupLayout
         public ICommand OpenPopupCommand { get; set; }
-
-        public ICommand RemoveAllMachinesCommand { get; set; }
 
         public bool DisplayPopup
         {
@@ -71,6 +73,7 @@ namespace Inventory.ViewModels
             OpenPopupCommand = new Command(OpenPopup);
             AddMachineCommand = new Command(AddMachinePopup);
             RemoveAllMachinesCommand = new Command(RemoveAll);
+            NavigateToSpeakPageCommand = new DelegateCommand(NavigateToSpeakPage);
         }
         #endregion
 
@@ -119,6 +122,11 @@ namespace Inventory.ViewModels
                 //MachinesInfo = dbContext.Machines.ToObservableCollection();
                 MachinesInfo.Clear();
             }
+        }
+
+        private void NavigateToSpeakPage()
+        {
+            NavigationService.NavigateAsync("SpeakPage");
         }
 
         #endregion

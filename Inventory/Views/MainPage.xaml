@@ -25,7 +25,7 @@
                                    AcceptCommand="{Binding AddMachineCommand}">
                 <sfPopup:PopupView.HeaderTemplate>
                     <DataTemplate>
-                        <Label Text="ADD MACHINE" HorizontalOptions="Center" FontSize="16"/>
+                        <Label Text="ADD MACHINE" HorizontalOptions="Center" FontSize="Title"/>
                     </DataTemplate>
                 </sfPopup:PopupView.HeaderTemplate>
 
@@ -106,6 +106,7 @@
         <sfPopup:SfPopupLayout.Content>
             <StackLayout x:Name="MainLayout">
                 <Label Text="{Binding Title}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="Title"/>
+                <Button Text="Navigate to speak page" Command="{Binding    NavigateToSpeakPageCommand}" />
                 <listview:SfListView x:Name="listView" 
                                      ItemSize="300"
                                      ItemsSource="{Binding MachinesInfo}"
