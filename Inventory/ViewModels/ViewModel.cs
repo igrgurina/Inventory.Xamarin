@@ -8,12 +8,13 @@ using System.Windows.Input;
 using Inventory.Enumerations;
 using Inventory.Models;
 using Inventory.Services;
+using Prism.Navigation;
 using Syncfusion.DataSource.Extensions;
 using Xamarin.Forms;
 
 namespace Inventory.ViewModels
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : ViewModelBase
     {
         #region Fields
         private bool _displayPopup;
@@ -54,8 +55,11 @@ namespace Inventory.ViewModels
         #endregion
 
         #region Constructor
-        public ViewModel()
+        public MainPageViewModel(INavigationService navigationService)
+            : base(navigationService)
         {
+            Title = "Inventory";
+
             Machine = new Machine(); // add new
             MachinesInfo = new ObservableCollection<Machine>(); // view all existing
 

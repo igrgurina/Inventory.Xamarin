@@ -1,14 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Inventory.ViewModels;
-using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
-using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
 
-namespace Inventory
+namespace Inventory.Views
 {
     public partial class MainPage : ContentPage
     {
