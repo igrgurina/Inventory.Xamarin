@@ -20,7 +20,7 @@ namespace Inventory.Models
 
         public string MachineName
         {
-            get { return _machineName; }
+            get => _machineName;
             set
             {
                 _machineName = value;
@@ -30,7 +30,7 @@ namespace Inventory.Models
 
         public MachineType MachineType
         {
-            get { return _machineType; }
+            get => _machineType;
             set
             {
                 _machineType = value;
@@ -40,7 +40,7 @@ namespace Inventory.Models
 
         public string MachineCPU
         {
-            get { return _machineCpu; }
+            get => _machineCpu;
             set
             {
                 _machineCpu = value;
@@ -50,7 +50,7 @@ namespace Inventory.Models
 
         public string MachineGPU
         {
-            get { return _machineGpu; }
+            get => _machineGpu;
             set
             {
                 _machineGpu = value;
@@ -60,7 +60,7 @@ namespace Inventory.Models
 
         public string MachineHDD
         {
-            get { return _machineHdd; }
+            get => _machineHdd;
             set
             {
                 _machineHdd = value;
@@ -70,7 +70,7 @@ namespace Inventory.Models
 
         public string MachineRAM
         {
-            get { return _machineRam; }
+            get => _machineRam;
             set
             {
                 _machineRam = value;

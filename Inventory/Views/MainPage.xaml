@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Inventory"
              xmlns:controls="clr-namespace:Inventory.Controls;assembly=Inventory"
              xmlns:enums="clr-namespace:Inventory.Enumerations;assembly=Inventory"
              xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
              xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:viewModels="clr-namespace:Inventory.ViewModels;assembly=Inventory"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Inventory.Views.MainPage">
@@ -41,10 +36,6 @@
                                     <RowDefinition Height="75" />
                                     <RowDefinition Height="75" />
                                 </Grid.RowDefinitions>
-                                <!--<Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>-->
 
                                 <inputLayout:SfTextInputLayout Hint="Name" 
                                                                    HelperText="Enter machine name" 
@@ -55,11 +46,7 @@
                                 </inputLayout:SfTextInputLayout>
 
                                 <inputLayout:SfTextInputLayout Hint="Type" HelperText="Select machine type" ContainerType="Outlined" Grid.Row="1" Padding="15">
-                                    <!--<combobox:SfComboBox MultiSelectMode="None" 
-                                                             DataSource="{Binding MachineTypeValues}" 
-                                                             SelectedItem="{Binding Machine.MachineType,Mode=TwoWay}" />-->
                                     <controls:EnumBindablePicker x:TypeArguments="enums:MachineType" SelectedItem="{Binding Machine.MachineType}"></controls:EnumBindablePicker>
-                                    <!--<Label Text="{Binding Machine.MachineType}"></Label>-->
 
                                 </inputLayout:SfTextInputLayout>
 
@@ -91,11 +78,6 @@
                                                                    Padding="15">
                                     <Entry Text="{Binding Machine.MachineHDD}"></Entry>
                                 </inputLayout:SfTextInputLayout>
-
-                                <!--<Label Text="Machine Name:" Grid.Row="0" Grid.Column="0" />-->
-                                <!--<Entry Text="{Binding MachineName}" Grid.Row="0" Grid.Column="1" />-->
-                                <!--<Label Text="Machine CPU:" Grid.Row="1" Grid.Column="0" />-->
-                                <!--<Entry Text="{Binding MachineCpu}" Grid.Row="1" Grid.Column="1" />-->
                             </Grid>
                         </ScrollView>
                     </DataTemplate>
@@ -174,31 +156,4 @@
         </sfPopup:SfPopupLayout.Content>
 
     </sfPopup:SfPopupLayout>
-
-
-
-    <!-- <local:PopupPage x:Name="addMachine" IsOpen="{Binding DisplayPopup}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <local:PopupPage.Content>
-            <StackLayout Orientation="Vertical">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="Machine Name:" Grid.Row="0" Grid.Column="0" />
-                    <Entry Text="{Binding MachineName}" Grid.Row="0" Grid.Column="1" />
-                    <Label Text="Machine CPU:" Grid.Row="1" Grid.Column="0" />
-                    <Entry Text="{Binding MachineCpu}" Grid.Row="1" Grid.Column="1" />
-                </Grid>
-
-                <Button x:Name="AddMachineButton" Text="Add" Command="{Binding AddMachineCommand}" HeightRequest="100" HorizontalOptions="FillAndExpand"/>
-
-            </StackLayout>
-        </local:PopupPage.Content>
-    </local:PopupPage> -->
 </ContentPage>

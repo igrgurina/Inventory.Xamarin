@@ -27,14 +27,8 @@ namespace Inventory.Controls
 
         public T SelectedItem
         {
-            get
-            {
-                return (T)GetValue(SelectedItemProperty);
-            }
-            set
-            {
-                SetValue(SelectedItemProperty, value);
-            }
+            get => (T)GetValue(SelectedItemProperty);
+            set => SetValue(SelectedItemProperty, value);
         }
 
         private void OnSelectedIndexChanged(object sender, EventArgs e)

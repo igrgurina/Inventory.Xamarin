@@ -24,17 +24,16 @@ namespace Inventory.ViewModels
         #region Properties
         public Machine Machine
         {
-            get { return _machine; }
-            set
-            {
-                _machine = value;
-            }
+            get => _machine;
+            set => _machine = value;
         }
 
-        // listview horizontal
+        // used for listview horizontal
         public ObservableCollection<Machine> MachinesInfo { get; set; }
 
         public ICommand AddMachineCommand { get; set; }
+
+        protected IMainPageViewModelService InventoryService { get; private set; }
 
         #region SfPopupLayout
         public ICommand OpenPopupCommand { get; set; }
@@ -43,22 +42,19 @@ namespace Inventory.ViewModels
 
         public bool DisplayPopup
         {
-            get { return _displayPopup; }
-            set
-            {
-                _displayPopup = value;
-                RaisePropertyChanged(nameof(DisplayPopup));
-            }
+            get => _displayPopup;
+            set => SetProperty(ref _displayPopup, value);
         }
         #endregion
 
         #endregion
 
         #region Constructor
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(INavigationService navigationService, IMainPageViewModelService inventoryService)
             : base(navigationService)
         {
             Title = "Inventory";
+            this.InventoryService = inventoryService;
 
             Machine = new Machine(); // add new
             MachinesInfo = new ObservableCollection<Machine>(); // view all existing
@@ -86,26 +82,20 @@ namespace Inventory.ViewModels
 
         private void AddMachinePopup()
         {
-            // TODO: add to database
-            var _machine = new Machine()
+            var machine = new Machine()
             {
                 MachineName = Machine.MachineName,
                 MachineCPU = Machine.MachineCPU,
                 MachineGPU = Machine.MachineGPU,
                 MachineHDD = Machine.MachineHDD,
                 MachineRAM = Machine.MachineRAM,
-                MachineType = MachineType.PC
+                MachineType = Machine.MachineType
             };
 
 
-            this.MachinesInfo.Add(_machine);
+            this.MachinesInfo.Add(machine);
 
-            using (var dbContext = new InventoryContext())
-            {
-                dbContext.Add(_machine);
-
-                dbContext.SaveChanges();
-            }
+            InventoryService.Create(machine);
         }
 
         private void RemoveAll()
@@ -121,15 +111,6 @@ namespace Inventory.ViewModels
             }
         }
 
-        #endregion
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         #endregion
     }
 }

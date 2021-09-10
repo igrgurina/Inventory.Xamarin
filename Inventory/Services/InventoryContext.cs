@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Inventory.Models;
 using Microsoft.EntityFrameworkCore;
 using Xamarin.Essentials;
@@ -30,6 +31,32 @@ namespace Inventory.Services
 
             optionsBuilder
                 .UseSqlite($"Filename={dbPath}");
+        }
+    }
+
+    public interface IDbContextProvider<out TDbContext>
+    {
+        TDbContext GetDbContext();
+    }
+
+    public sealed class SimpleDbContextProvider<TDbContext> : IDbContextProvider<TDbContext>
+        where TDbContext : DbContext
+    {
+        public TDbContext DbContext { get; }
+
+        public SimpleDbContextProvider(TDbContext dbContext)
+        {
+            DbContext = dbContext;
+        }
+
+        public TDbContext GetDbContext()
+        {
+            return DbContext;
+        }
+
+        public Task<TDbContext> GetDbContextAsync()
+        {
+            return Task.FromResult(DbContext);
         }
     }
 }
