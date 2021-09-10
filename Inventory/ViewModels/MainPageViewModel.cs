@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Inventory.Enumerations;
 using Inventory.Models;
@@ -59,10 +60,7 @@ namespace Inventory.ViewModels
             Machine = new Machine(); // add new
             MachinesInfo = new ObservableCollection<Machine>(); // view all existing
 
-            using (var dbContext = new InventoryContext())
-            {
-                MachinesInfo = dbContext.Machines.ToObservableCollection();
-            }
+            Refresh();
 
             OpenPopupCommand = new Command(OpenPopup);
             AddMachineCommand = new Command(AddMachinePopup);
@@ -92,23 +90,23 @@ namespace Inventory.ViewModels
                 MachineType = Machine.MachineType
             };
 
+            _ = InventoryService.Create(machine);
 
             this.MachinesInfo.Add(machine);
-
-            InventoryService.Create(machine);
         }
 
         private void RemoveAll()
         {
-            using (var dbContext = new InventoryContext())
-            {
-                dbContext.RemoveRange(dbContext.Machines);
+            _ = InventoryService.DeleteAll();
 
-                dbContext.SaveChanges();
+            MachinesInfo.Clear();
+        }
 
-                //MachinesInfo = dbContext.Machines.ToObservableCollection();
-                MachinesInfo.Clear();
-            }
+        private async void Refresh()
+        {
+            var t = await InventoryService.GetAll();
+
+            MachinesInfo = t.ToObservableCollection();
         }
 
         #endregion

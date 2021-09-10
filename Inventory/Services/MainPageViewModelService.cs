@@ -14,6 +14,8 @@ namespace Inventory.Services
         Task<List<Machine>> GetAll();
         Task<Machine> Create(Machine machine);
         Task Delete(Machine machine);
+
+        Task DeleteAll();
     }
 
     public class MainPageViewModelService : IMainPageViewModelService
@@ -38,6 +40,11 @@ namespace Inventory.Services
         public async Task Delete(Machine machine)
         {
             await _machineRepository.DeleteAsync(machine);
+        }
+
+        public async Task DeleteAll()
+        {
+            await _machineRepository.DeleteAllAsync();
         }
     }
 }
